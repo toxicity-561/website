@@ -26,6 +26,75 @@ interface ApiResponse {
   };
 }
 
+const KEYWORDS = new Set([
+  "and","break","do","else","elseif","end","false","for","function","if","in",
+  "local","nil","not","or","repeat","return","then","true","until","while",
+  "type","export","continue","interface"
+]);
+
+const BUILTINS = new Set([
+  "game","workspace","script","print","warn","error","pairs","ipairs","pcall",
+  "xpcall","require","loadstring","tostring","tonumber","typeof","task","wait",
+  "spawn","delay","Instance","Vector3","Vector2","CFrame","Color3","UDim2","UDim",
+  "Enum","math","string","table","os","coroutine"
+]);
+
+function highlight(code: string) {
+  const tokens = code.split(/(\s+|"[^"]*"|'[^']*'|--\[\[[\s\S]*?\]\]|--.*|[(){}\[\].,:;]|[+\-*/%^#=<>~]+)/g);
+
+  return tokens.map((tok, i) => {
+    if (!tok) return null;
+
+    if (/^--/.test(tok)) {
+      return (
+        <span key={i} className="text-emerald-500/60 italic">
+          {tok}
+        </span>
+      );
+    }
+    if (/^"[^"]*"$|^'[^']*'$/.test(tok)) {
+      return (
+        <span key={i} className="text-amber-300/90">
+          {tok}
+        </span>
+      );
+    }
+    if (/^\d+(\.\d+)?$/.test(tok)) {
+      return (
+        <span key={i} className="text-sky-300/90">
+          {tok}
+        </span>
+      );
+    }
+    if (KEYWORDS.has(tok)) {
+      return (
+        <span key={i} className="text-fuchsia-400/90 font-medium">
+          {tok}
+        </span>
+      );
+    }
+    if (BUILTINS.has(tok)) {
+      return (
+        <span key={i} className="text-cyan-300/90">
+          {tok}
+        </span>
+      );
+    }
+    if (/^[(){}\[\].,:;]$/.test(tok)) {
+      return (
+        <span key={i} className="text-zinc-400">
+          {tok}
+        </span>
+      );
+    }
+    return (
+      <span key={i} className="text-zinc-200">
+        {tok}
+      </span>
+    );
+  });
+}
+
 export function ScriptSearchTab() {
   const [scripts, setScripts] = useState<Script[]>([]);
   const [loading, setLoading] = useState(true);
@@ -124,7 +193,6 @@ export function ScriptSearchTab() {
 
   return (
     <div className="flex flex-col items-center gap-10 max-w-4xl mx-auto w-full">
-      {/* Warning Banner */}
       <div className="animate-rise w-full">
         <div className="glass rounded-2xl p-4 border border-amber-500/30 bg-amber-500/5">
           <div className="flex items-start gap-3">
@@ -138,7 +206,7 @@ export function ScriptSearchTab() {
           </div>
         </div>
       </div>
-      
+
       <div className="text-center animate-scale-in">
         <div className="glass-strong rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-5 glow-sky glass-shimmer">
           <Search className="w-8 h-8 text-primary" />
@@ -171,14 +239,14 @@ export function ScriptSearchTab() {
           </button>
         </div>
       </form>
-      
+
       {loading && (
         <div className="flex flex-col items-center gap-4 py-12">
           <Loader2 className="w-10 h-10 text-primary animate-spin" />
           <p className="text-muted-foreground">Loading scripts...</p>
         </div>
       )}
-      
+
       {error && (
         <GlassCard variant="strong" className="w-full text-center py-8">
           <p className="text-destructive">{error}</p>
@@ -202,7 +270,6 @@ export function ScriptSearchTab() {
               style={{ animationDelay: `${0.05 * index}s` }}
             >
               <div className="glass rounded-3xl p-5 h-full flex flex-col cursor-pointer group hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 glass-shimmer">
-                {/* Thumbnail */}
                 <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 glass-inner group-hover:ring-2 group-hover:ring-primary/50 transition-all duration-300">
                   {getImageUrl(script) ? (
                     <img
@@ -240,7 +307,6 @@ export function ScriptSearchTab() {
                       {script.scriptType || "Free"}
                     </span>
                   </div>
-                  {/* Click hint */}
                   <div className="mt-3 pt-3 border-t border-foreground/10 text-center">
                     <span className="text-xs text-muted-foreground group-hover:text-primary transition-colors duration-300 font-medium">
                       Tap to view loadstring
@@ -253,23 +319,19 @@ export function ScriptSearchTab() {
         </div>
       )}
 
-      
       {mounted && modalOpen && selectedScript && createPortal(
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
         >
-          
           <div
             className="absolute inset-0 bg-black/80 backdrop-blur-xl animate-fade-in"
             onClick={closeModal}
           />
 
-          
           <div className="relative z-10 w-full max-w-lg animate-modal-in">
             <div className="glass-strong rounded-3xl p-6 md:p-8 overflow-y-auto max-h-[85vh] border border-white/20">
-              {/* Close Button - Top Right */}
               <button
                 type="button"
                 onClick={closeModal}
@@ -299,13 +361,17 @@ export function ScriptSearchTab() {
                 <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3 block">
                   Loadstring
                 </label>
-                <div className="glass-inner rounded-2xl p-4 max-h-40 overflow-y-auto">
-                  <code className="text-xs md:text-sm text-foreground font-mono break-all whitespace-pre-wrap block">
-                    {selectedScript.script || "No loadstring available"}
-                  </code>
+                <div className="rounded-2xl overflow-hidden border border-white/10 bg-zinc-800 max-h-40 overflow-y-auto">
+                  <div className="p-4 font-mono text-xs md:text-sm">
+                    <code className="leading-relaxed whitespace-pre-wrap break-all block">
+                      {selectedScript.script
+                        ? highlight(selectedScript.script)
+                        : "No loadstring available"}
+                    </code>
+                  </div>
                 </div>
               </div>
-              
+
               <div className="flex flex-col gap-3">
                 <button
                   type="button"
