@@ -116,7 +116,7 @@ export function ScriptsTab() {
                       The Proton Hub muscle legends script is now keyed and uses Obscura. Click the button and you'll get redirected to the key system!
                     </p>
                     <a
-                      href="https://discord.gg/proton-hub"
+                      href="https://obscuravm.com/key/proton-hub"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="glass rounded-xl px-6 py-3.5 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 font-bold text-base text-primary"
