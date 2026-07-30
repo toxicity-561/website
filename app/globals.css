@@ -1,0 +1,358 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 20% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 8%;
+    --primary: 190 85% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 93%;
+    --secondary-foreground: 220 20% 8%;
+    --muted: 220 12% 91%;
+    --muted-foreground: 220 10% 42%;
+    --accent: 190 75% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 190 85% 42%;
+    --radius: 1.25rem;
+
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-bg-strong: rgba(255, 255, 255, 0.7);
+    --glass-bg-subtle: rgba(255, 255, 255, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.75);
+    --glass-border-inner: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.04);
+    --glass-shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.04);
+    --glass-blur: 28px;
+    --glass-blur-strong: 48px;
+
+    --mesh-1: rgba(0, 180, 216, 0.12);
+    --mesh-2: rgba(144, 224, 239, 0.1);
+    --mesh-3: rgba(0, 119, 182, 0.06);
+  }
+
+  .dark {
+    --background: 225 25% 5%;
+    --foreground: 210 20% 95%;
+    --card: 225 20% 8%;
+    --card-foreground: 210 20% 95%;
+    --popover: 225 20% 8%;
+    --popover-foreground: 210 20% 95%;
+    --primary: 190 85% 52%;
+    --primary-foreground: 225 25% 5%;
+    --secondary: 225 15% 12%;
+    --secondary-foreground: 210 20% 95%;
+    --muted: 225 12% 14%;
+    --muted-foreground: 210 10% 52%;
+    --accent: 190 75% 52%;
+    --accent-foreground: 225 25% 5%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 225 12% 16%;
+    --input: 225 12% 16%;
+    --ring: 190 85% 52%;
+
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-bg-strong: rgba(255, 255, 255, 0.08);
+    --glass-bg-subtle: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border-inner: rgba(255, 255, 255, 0.06);
+    --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), 0 2px 12px rgba(0, 0, 0, 0.15);
+    --glass-shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.3), 0 4px 20px rgba(0, 0, 0, 0.2);
+    --glass-blur: 32px;
+    --glass-blur-strong: 56px;
+
+    --mesh-1: rgba(0, 180, 216, 0.06);
+    --mesh-2: rgba(144, 224, 239, 0.04);
+    --mesh-3: rgba(0, 119, 182, 0.03);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 var(--glass-border-inner),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur-strong)) saturate(1.9);
+  -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(1.9);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    var(--glass-shadow-lg),
+    inset 0 1px 0 var(--glass-border-inner),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.glass-subtle {
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+}
+
+.glass-inner {
+  background: var(--glass-bg-subtle);
+  border: 1px solid var(--glass-border-inner);
+  box-shadow: inset 0 1px 0 var(--glass-border-inner);
+}
+
+@keyframes shimmer-slide {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+
+.glass-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.glass-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.08) 75%,
+    transparent 100%
+  );
+  animation: shimmer-slide 5s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.dark .glass-shimmer::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.03) 75%,
+    transparent 100%
+  );
+}
+
+@keyframes glitch {
+  0%, 88%, 100% { opacity: 1; transform: translate(0, 0) scale(1); }
+  89% { opacity: 0.4; transform: translate(-3px, 2px) scale(1.3); }
+  90% { opacity: 1; transform: translate(3px, -1px) scale(0.8); }
+  91% { opacity: 0.2; transform: translate(-1px, -2px) scale(1.1); }
+  92% { opacity: 1; transform: translate(2px, 1px) scale(1); }
+  93% { opacity: 0.6; transform: translate(0, 0) scale(0.9); }
+  94% { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+.glitch-dot {
+  animation: glitch 3s infinite;
+}
+
+@keyframes glow-pulse-green {
+  0%, 100% { box-shadow: 0 0 6px 2px rgba(52, 211, 153, 0.4); }
+  50% { box-shadow: 0 0 18px 6px rgba(52, 211, 153, 0.7); }
+}
+.glow-green {
+  animation: glow-pulse-green 2.5s ease-in-out infinite;
+}
+
+@keyframes glow-pulse-cyan {
+  0%, 100% { box-shadow: 0 0 8px 3px hsl(190 85% 52% / 0.2); }
+  50% { box-shadow: 0 0 24px 8px hsl(190 85% 52% / 0.4); }
+}
+.glow-cyan {
+  animation: glow-pulse-cyan 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse-blue {
+  0%, 100% { box-shadow: 0 0 6px 2px rgba(96, 165, 250, 0.4); }
+  50% { box-shadow: 0 0 18px 6px rgba(96, 165, 250, 0.7); }
+}
+.glow-blue {
+  animation: glow-pulse-blue 2.5s ease-in-out infinite;
+}
+
+@keyframes glow-pulse-amber {
+  0%, 100% { box-shadow: 0 0 8px 3px rgba(251, 191, 36, 0.15); }
+  50% { box-shadow: 0 0 24px 8px rgba(251, 191, 36, 0.35); }
+}
+.glow-amber {
+  animation: glow-pulse-amber 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse-sky {
+  0%, 100% { box-shadow: 0 0 8px 3px rgba(56, 189, 248, 0.15); }
+  50% { box-shadow: 0 0 24px 8px rgba(56, 189, 248, 0.35); }
+}
+.glow-sky {
+  animation: glow-pulse-sky 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.float { animation: float 6s ease-in-out infinite; }
+
+@keyframes atom-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes atom-spin-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* ====================== */
+/*  STAGGER ENTRANCE      */
+/* ====================== */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+.animate-rise {
+  animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+.delay-5 { animation-delay: 0.4s; }
+.delay-6 { animation-delay: 0.48s; }
+.delay-7 { animation-delay: 0.56s; }
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+.animate-scale-in {
+  animation: scale-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes mesh-move-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 30px) scale(0.95); }
+  75% { transform: translate(20px, 20px) scale(1.02); }
+}
+@keyframes mesh-move-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-40px, 20px) scale(1.1); }
+  66% { transform: translate(30px, -30px) scale(0.9); }
+}
+@keyframes mesh-move-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -40px) scale(1.08); }
+}
+
+@keyframes particle-drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  20% { opacity: 0.6; }
+  80% { opacity: 0.6; }
+  100% { transform: translateY(-120px) translateX(40px); opacity: 0; }
+}
+
+@keyframes pill-pop {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.pill-pop {
+  animation: pill-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+.animate-modal-in {
+  animation: modal-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+html {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
