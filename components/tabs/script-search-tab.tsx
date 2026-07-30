@@ -367,22 +367,23 @@ export function ScriptSearchTab() {
                       <div
                         aria-hidden
                         className="select-none pr-4 mr-4 border-r border-white/10 text-zinc-600 text-right leading-relaxed"
-                        >
+                      >
                         {(selectedScript.script || "").split("\n").map((_, i) => (
                           <div key={i}>{i + 1}</div>
                         ))}
                       </div>
+
                       <code className="leading-relaxed whitespace-pre block">
-                      </code>{selectedScript.script
-                        ? (selectedScript.script.split("\n")).map((line, i) => (
-                          <div key={i}>{line ? highlight(line) : "\u00A0"}</div>
-                        ))
-                      : "No loadstring available"}
-                    </code>
+                        {selectedScript.script
+                          ? selectedScript.script.split("\n").map((line, i) => (
+                              <div key={i}>{line ? highlight(line) : "\u00A0"}</div>
+                            ))
+                          : "No loadstring available"}
+                      </code>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
               <div className="flex flex-col gap-3">
                 <button
