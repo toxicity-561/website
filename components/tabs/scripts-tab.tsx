@@ -36,6 +36,8 @@ export function ScriptsTab() {
               { color: "yellow" as const, label: "Semi Detected" },
               { color: "red" as const, label: "Detected / Bannable" },
               { color: "blue" as const, label: "Coming Soon / Idea" },
+              { color: "white" as const, label: "Working On" },
+              { color: "black" as const, label: "Discontinued" },
             ].map(({ color, label }) => (
               <div key={color} className="flex items-center gap-4">
                 <StatusDot color={color} size="md" />
@@ -57,6 +59,7 @@ export function ScriptsTab() {
             {[
               { name: "Muscle Legends", color: "green" as const, label: "Undetected", labelColor: "text-emerald-400" },
               { name: "Grow A Garden 2", color: "green" as const, label: "Undetected", labelColor: "text-emerald-400" },
+              { name: "Strongman Simulator", color: "black" as const, label: "Discontinued", labelColor: "text-black-400" },
               { name: "MM2", color: "blue" as const, label: "Coming Soon", labelColor: "text-blue-400" },
               { name: "Legends Of Speed", color: "blue" as const, label: "Coming Soon", labelColor: "text-blue-400" },
             ].map((game) => (
