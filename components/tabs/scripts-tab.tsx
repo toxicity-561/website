@@ -8,7 +8,17 @@ import { ScrollText, KeyRound, Link } from "lucide-react";
 
 const MUSCLE_LEGENDS_LOADSTRING = `loadstring(game:HttpGet("https://raw.githubusercontent.com/toxicity-561/Proton-Hub/refs/heads/main/Muscle-Legends.luau"))()`;
 
-const GROW_A_GARDEN_LOADSTRING = `-- script is not protected or out YET!`;
+const GROW_A_GARDEN_LOADSTRING = `--[[
+   ___  __    ___  _____  ___    __                  ___ 
+  / _ \/__\  /___\/__   \/___\/\ \ \   /\  /\/\ /\  / __\
+ / /_)/ \// //  //  / /\//  //  \/ /  / /_/ / / \ \/__\//
+/ ___/ _  \/ \_//  / / / \_// /\  /  / __  /\ \_/ / \/  \
+\/   \/ \_/\___/   \/  \___/\_\ \/   \/ /_/  \___/\_____/
+
+PROTON HUB GROW A GARDEN 2
+THE SCRIPT HASN'T BEEN PROTECTED OR MADE YET!
+https://proton-hub.net || https://discord.gg/zFgkDf9ECq
+]]`;
 
 export function ScriptsTab() {
   return (
