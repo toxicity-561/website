@@ -9,14 +9,8 @@ import { ScrollText, KeyRound, Link } from "lucide-react";
 const MUSCLE_LEGENDS_LOADSTRING = `loadstring(game:HttpGet("https://raw.githubusercontent.com/toxicity-561/Proton-Hub/refs/heads/main/Muscle-Legends.luau"))()`;
 
 const GROW_A_GARDEN_LOADSTRING = `--[[
-   ___  __    ___  _____  ___    __                  ___ 
-  / _ \/__\  /___\/__   \/___\/\ \ \   /\  /\/\ /\  / __\
- / /_)/ \// //  //  / /\//  //  \/ /  / /_/ / / \ \/__\//
-/ ___/ _  \/ \_//  / / / \_// /\  /  / __  /\ \_/ / \/  \
-\/   \/ \_/\___/   \/  \___/\_\ \/   \/ /_/  \___/\_____/
-
 PROTON HUB GROW A GARDEN 2
-THE SCRIPT HASN'T BEEN PROTECTED OR MADE YET!
+THE SCRIPT HASN'T BEEN PROTECTED OR MADE YET! || Edited by t0x1c ('It has been made, just not out yet')
 https://proton-hub.net || https://discord.gg/zFgkDf9ECq
 ]]`;
 
@@ -156,7 +150,15 @@ export function ScriptsTab() {
                     latest features to help you dominate. Copy the loadstring
                     below and execute it in your executor to get started.
                   </p>
-                  
+                  <a
+                      href="https://obscuravm.com/key/proton-hub"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="glass rounded-xl px-6 py-3.5 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 font-bold text-base text-primary"
+                    >
+                      <Link className="w-5 h-5" />
+                      Get Key
+                    </a>
                   <CodeBox code={GROW_A_GARDEN_LOADSTRING} />
                 </div>
               ),
