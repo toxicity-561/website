@@ -4,7 +4,7 @@ import { StatusDot } from "@/components/status-dot";
 import { GlassCard } from "@/components/glass-card";
 import { GlassAccordion } from "@/components/glass-accordion";
 import { CodeBox } from "@/components/code-box";
-import { ScrollText, KeyRound, MessageCircle } from "lucide-react";
+import { ScrollText, KeyRound, Link } from "lucide-react";
 
 const MUSCLE_LEGENDS_LOADSTRING = `loadstring(game:HttpGet("https://raw.githubusercontent.com/toxicity-561/Proton-Hub/refs/heads/main/Muscle-Legends.luau"))()`;
 
@@ -113,9 +113,7 @@ export function ScriptsTab() {
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      The key is in the Discord. The reason we redirect you to
-                      Discord is so the owner can make revenue from boosts and
-                      member activity through Discord member activity rewards.
+                      The Proton Hub muscle legends script is now keyed and uses Obscura. Click the button and you'll get redirected to the key system!
                     </p>
                     <a
                       href="https://discord.gg/proton-hub"
@@ -123,8 +121,8 @@ export function ScriptsTab() {
                       rel="noopener noreferrer"
                       className="glass rounded-xl px-6 py-3.5 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 font-bold text-base text-primary"
                     >
-                      <MessageCircle className="w-5 h-5" />
-                      Join the Discord
+                      <Link className="w-5 h-5" />
+                      Get Key
                     </a>
                   </div>
                 </div>
