@@ -111,15 +111,11 @@ export function CodeBox({ code, filename = "loadstring.lua" }: CodeBoxProps) {
           <span>{filename}</span>
         </div>
 
-        <span className="ml-auto text-[10px] uppercase tracking-wider text-zinc-500 font-mono mr-3">
-          {highlightedLines.length} {highlightedLines.length === 1 ? "line" : "lines"}
-        </span>
-
         <button
           type="button"
           onClick={copyToClipboard}
           aria-label="Copy code"
-          className={`rounded-lg w-8 h-8 flex items-center justify-center border transition-all duration-300 ${
+          className={`ml-auto rounded-lg w-8 h-8 flex items-center justify-center border transition-all duration-300 ${
             copied
               ? "bg-teal-400/15 border-teal-400/30 opacity-100 scale-100"
               : "bg-white/5 border-white/10 opacity-60 hover:opacity-100 hover:bg-teal-400/10 hover:border-teal-400/30 active:scale-90"
