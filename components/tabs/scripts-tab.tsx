@@ -150,6 +150,7 @@ export function ScriptsTab() {
                     latest features to help you dominate. Copy the loadstring
                     below and execute it in your executor to get started.
                   </p>
+                  <CodeBox code={GROW_A_GARDEN_LOADSTRING} />
                   <a
                       href="https://obscuravm.com/key/proton-hub"
                       target="_blank"
@@ -159,7 +160,6 @@ export function ScriptsTab() {
                       <Link className="w-5 h-5" />
                       Get Key
                     </a>
-                  <CodeBox code={GROW_A_GARDEN_LOADSTRING} />
                 </div>
               ),
             },
