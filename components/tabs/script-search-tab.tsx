@@ -201,6 +201,7 @@ export function ScriptSearchTab() {
               <p className="text-sm font-semibold text-amber-400">Heads Up</p>
               <p className="text-xs text-muted-foreground mt-1">
                 Scripts here are pulled live from an external API (ScriptBlox), so results may occasionally load slowly or look off. If that happens, just refresh or search again!
+                PLEASE I WILL WARN YOU SINCE WE ARE USING SCRIPTBLOX API YOU'LL BE EXPOSED TO STUFF YOU DO NOT WANNA SEE. SCRIPTBLOX HAS HAD A GORE PROBLEM AND EVEN A PORN SHOWING PROBLEM!!!!
               </p>
             </div>
           </div>
