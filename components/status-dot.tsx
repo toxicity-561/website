@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-type DotColor = "green" | "yellow" | "red" | "blue";
+type DotColor = "green" | "yellow" | "red" | "blue" | "white" | "black";
 
 const colorMap: Record<DotColor, { bg: string; glow: string; ring: string }> = {
   green: {
@@ -25,6 +25,16 @@ const colorMap: Record<DotColor, { bg: string; glow: string; ring: string }> = {
     glow: "glow-blue",
     ring: "ring-blue-400/30",
   },
+  white: {
+    bg: "bg-white",
+    glow: "shadow-[0_0_10px_4px_rgba(255,255,255,0.5)]",
+    ring: "ring-white/30",
+  },
+  black: {
+    bg: "bg-black",
+    glow: "shadow-[0_0_10px_4px_rgba(0,0,0,0.5)]",
+    ring: "ring-black/30",
+  },
 };
 
 interface StatusDotProps {
@@ -40,9 +50,9 @@ export function StatusDot({
 }: StatusDotProps) {
   const sizeClass =
     size === "sm" ? "w-2 h-2" : size === "lg" ? "w-4 h-4" : "w-3 h-3";
+
   return (
     <span className="relative inline-flex items-center justify-center">
-      
       <span
         className={cn(
           "absolute rounded-full ring-2",
@@ -52,7 +62,6 @@ export function StatusDot({
         )}
         style={{ animationDuration: "2.5s" }}
       />
-      
       <span
         className={cn(
           "inline-block rounded-full relative",
