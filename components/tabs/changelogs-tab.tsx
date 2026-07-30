@@ -38,7 +38,7 @@ export function ChangelogsTab() {
             </div>
 
             <p className="text-sm text-muted-foreground tracking-wide">
-              Please and thank you — and do good.
+              This page is still under development and it will take a awhile to finish and build!
             </p>
           </div>
         </GlassCard>
